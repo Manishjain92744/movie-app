@@ -15,8 +15,8 @@ const initialMoviesState = {
 } 
 
 export  function movies(state = initialMoviesState,action){
-   console.log('Movies Reducer');
-
+  
+   // console.log('Movies Reducer');
     // if(action.type === 'ADD_MOVIES')    bcz react community used switch case instaed of if else 
     // {
     //     return {
@@ -31,12 +31,12 @@ export  function movies(state = initialMoviesState,action){
          return {
             ...state,
             list: action.movies
-         }
+         };
       case ADD_FAVOURITE:
          return {
             ...state,
             favourites: [action.movie, ...state.favourites]
-         }
+         };
       case REMOVE_FAVOURITE:
           const filteredArray = state.favourites.filter(
             movie => movie.Title !== action.movie.Title
@@ -66,14 +66,13 @@ const initialSearchState = {
    showSearchResults : false
 }
 export function search (state = initialSearchState , action) {
-
    switch(action.type) {
       case ADD_SEARCH_RESULT : 
       return {
          ...state,
          result : action.movie,
          showSearchResults : true
-      }
+      };
       case ADD_MOVIE_TO_LIST : 
             return {
                ...state,
@@ -83,10 +82,10 @@ export function search (state = initialSearchState , action) {
    return state;
 }
 }
-const initialRootState = {
-   movies : initialMoviesState,
-   search : initialSearchState
-} 
+// const initialRootState = {
+//    movies : initialMoviesState,
+//    search : initialSearchState
+// } 
 
 // export default function rootReducer(state = initialRootState , action) {
 //    return {

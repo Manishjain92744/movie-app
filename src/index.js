@@ -1,7 +1,8 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore , applyMiddleware } from 'redux';
 import thunk  from 'redux-thunk';
+ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './components/App';
@@ -36,12 +37,13 @@ import rootReducer from './reducers';
   //  }
 
 const store = createStore(rootReducer,applyMiddleware(logger,thunk));
-console.log('store',store);
 
-   export const storeContext = createContext();
+// console.log('store',store);
 
-  console.log('storeContext',storeContext);
-// console.log('BEFRORE_STATE',store.getState());
+//    export const storeContext = createContext();
+
+//   console.log('storeContext',storeContext);
+// // console.log('BEFRORE_STATE',store.getState());
 
 // store.dispatch({
 //   type: 'ADD_MOVIES',
@@ -49,16 +51,57 @@ console.log('store',store);
 // });
 // console.log('AFTER_STATE',store.getState());
 
-  class Provider extends React.Component {
-    render () {
-      const {store} = this.props;
-       return (
-       <storeContext.Provider value = {store}>
-        {this.props.children}
-       </storeContext.Provider>
-       );
-    }
-  }
+  // class Provider extends React.Component {
+  //   render () {
+  //     const {store} = this.props;
+  //      return (
+  //      <storeContext.Provider value = {store}>
+  //       {this.props.children}
+  //      </storeContext.Provider>
+  //      );
+  //   }
+  // }
+
+  //  const connectedAppComponent = connect(callback)(App);
+
+// export function connect(callback) {
+//   return function (Component){
+//      class connectedComponent extends React.Component {
+//       constructor(props) {
+//         super(props);
+//         this.unsubscribe = this.props.store.subscribe (()=>this.forceUpdate());
+//       }
+//       componentWillUnmount () {
+//         this.unsubscribe();
+//       }
+//       render () {
+//         const {store} =this.props;
+//         const state = store.getState();
+//             const dataToBePassedAsProps = callback(state);
+//             return (
+//             <Component 
+//             {...dataToBePassedAsProps} 
+//             dispatch = {store.dispatch}
+//              />
+//             );
+//       }
+//     }
+//     class connectedComponentWrapper extends React.Component {
+//       render() {
+//         return (
+//           <storeContext.Consumer>
+//             { (store) => {
+//             <connectedComponent store = {store} />;
+//             }}
+//           </storeContext.Consumer>
+//         );
+//       }
+//     }
+//     return connectedComponentWrapper;
+//   };
+// }
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
